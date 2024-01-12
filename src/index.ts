@@ -35,15 +35,17 @@ export function transform(code: string, id: string, aliasConfig: Alias[] = []): 
     if (!oldImports) return code
 
     const newImports = oldImports.map(oldImport => {
-        const pathReg = new RegExp(`['"](~?[^'"]*)['"]`)
+        // const pathReg = new RegExp(`['"](~?[^'"]*)['"]`)
+        const pathReg = new RegExp(`['"]([^'"]*)['"]`)
         const aliasPaths = pathReg.exec(oldImport)
         if (!aliasPaths) return oldImport
         // 遍历别名配置进行转换
         for (const { find, replacement } of aliasConfig) {
             let aliasPath = aliasPaths[1]
             // 处理路径时需要不带(~)符号
-            if (aliasPath.startsWith('~')) aliasPath = aliasPath.slice(1)
-            const hasAlias = typeof find === 'string' ? new RegExp(`^~?${ find }`).test(aliasPath) : find.test(aliasPath)
+            // if (aliasPath.startsWith('~')) aliasPath = aliasPath.slice(1)
+            // const hasAlias = typeof find === 'string' ? new RegExp(`^~?${ find }`).test(aliasPath) : find.test(aliasPath)
+            const hasAlias = typeof find === 'string' ? new RegExp(`^${ find }`).test(aliasPath) : find.test(aliasPath)
             if (!hasAlias) continue
             const absolutePath = aliasPath.replace(find, replacement)
             // relative处理文件的路径需要向上一层
