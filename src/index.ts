@@ -1,4 +1,4 @@
-import qs from 'querystring'
+import qs from 'fast-querystring'
 import path from 'path'
 import { Alias, Plugin } from 'vite'
 

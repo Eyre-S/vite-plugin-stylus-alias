@@ -5,20 +5,23 @@ import { transform } from '../src/index'
 const imports = `
 @import './style/style1.stylus';
 @import '../style/style2.styl';
-@import '~@/style/style1.stylus';
-@import 'style/style2.styl';`
+@import '@/style/style1.stylus';
+@import 'style/style2.styl';
+@import '~/style/style3.styl';`
 
 const vueAfter = `
 @import './style/style1.stylus';
 @import '../style/style2.styl';
 @import '../style/style1.stylus';
-@import '../style/style2.styl';`
+@import '../style/style2.styl';
+@import '~/style/style3.styl';`
 
 const stylAfter = `
 @import './style/style1.stylus';
 @import '../style/style2.styl';
 @import './style1.stylus';
-@import './style2.styl';`
+@import './style2.styl';
+@import '~/style/style3.styl';`
 
 describe('vite-stylus-alisa', () => {
     const vueId = path.resolve(__dirname, 'src/views/index.vue') + '?vue&type=style&index=0&lang.stylus'

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-stylus-alias-next",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "JeffreyLiu666",
   "contributors": [
     "JeffreyLiu666",
@@ -41,6 +41,6 @@
     "vite": "^4.5.1"
   },
   "dependencies": {
-    "querystring": "^0.2.1"
+    "fast-querystring": "^1.1.2"
   }
 }
